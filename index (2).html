@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Compatibility Test</title>
+  <style>
+    body {
+      background: url('bg.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    legend {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Love Compatibility Test</h1>
+    <form id="compatibilityForm" onsubmit="calculateCompatibility(event)">
+      
+      <!-- Person 1 Details -->
+      <fieldset>
+        <legend>Person 1</legend>
+        <label for="name1">Name:</label>
+        <input type="text" id="name1" placeholder="e.g., Miguel" required>
+        
+        <label for="bday1">Birthday:</label>
+        <input type="date" id="bday1" required>
+        
+        <label for="zodiac1">Zodiac Sign:</label>
+        <select id="zodiac1" required>
+          <option value="">--Select Zodiac--</option>
+          <option value="Aries">Aries</option>
+          <option value="Taurus">Taurus</option>
+          <option value="Gemini">Gemini</option>
+          <option value="Cancer">Cancer</option>
+          <option value="Leo">Leo</option>
+          <option value="Virgo">Virgo</option>
+          <option value="Libra">Libra</option>
+          <option value="Scorpio">Scorpio</option>
+          <option value="Sagittarius">Sagittarius</option>
+          <option value="Capricorn">Capricorn</option>
+          <option value="Aquarius">Aquarius</option>
+          <option value="Pisces">Pisces</option>
+        </select>
+        
+        <label for="color1">Favorite Color:</label>
+        <input type="text" id="color1" placeholder="e.g., Celadone" required>
+        
+        <label for="food1">Favorite Food:</label>
+        <input type="text" id="food1" placeholder="e.g., Pizza" required>
+      </fieldset>
+      
+      <!-- Person 2 Details -->
+      <fieldset>
+        <legend>Person 2</legend>
+        <label for="name2">Name:</label>
+        <input type="text" id="name2" placeholder="e.g., Francis" required>
+        
+        <label for="bday2">Birthday:</label>
+        <input type="date" id="bday2" required>
+        
+        <label for="zodiac2">Zodiac Sign:</label>
+        <select id="zodiac2" required>
+          <option value="">--Select Zodiac--</option>
+          <option value="Aries">Aries</option>
+          <option value="Taurus">Taurus</option>
+          <option value="Gemini">Gemini</option>
+          <option value="Cancer">Cancer</option>
+          <option value="Leo">Leo</option>
+          <option value="Virgo">Virgo</option>
+          <option value="Libra">Libra</option>
+          <option value="Scorpio">Scorpio</option>
+          <option value="Sagittarius">Sagittarius</option>
+          <option value="Capricorn">Capricorn</option>
+          <option value="Aquarius">Aquarius</option>
+          <option value="Pisces">Pisces</option>
+        </select>
+        
+        <label for="color2">Favorite Color:</label>
+        <input type="text" id="color2" placeholder="e.g., Gamboge" required>
+        
+        <label for="food2">Favorite Food:</label>
+        <input type="text" id="food2" placeholder="e.g., Shushi" required>
+      </fieldset>
+      
+      <button type="submit">Test Compatibility</button>
+    </form>
+  </div>
+  
+  <script>
+    function calculateCompatibility(event) {
+      event.preventDefault();
+      
+      // person 1
+      var name1    = document.getElementById("name1").value.trim();
+      var bday1    = document.getElementById("bday1").value;
+      var zodiac1  = document.getElementById("zodiac1").value;
+      var color1   = document.getElementById("color1").value.trim();
+      var food1    = document.getElementById("food1").value.trim();
+      
+      // person 2
+      var name2    = document.getElementById("name2").value.trim();
+      var bday2    = document.getElementById("bday2").value;
+      var zodiac2  = document.getElementById("zodiac2").value;
+      var color2   = document.getElementById("color2").value.trim();
+      var food2    = document.getElementById("food2").value.trim();
+      
+      
+      if (!name1 || !bday1 || !zodiac1 || !color1 || !food1 ||
+          !name2 || !bday2 || !zodiac2 || !color2 || !food2) {
+        alert("Please fill out all fields for both persons.");
+        return;
+      }
+      
+      var combinedData = name1 + bday1 + zodiac1 + color1 + food1 +
+                         name2 + bday2 + zodiac2 + color2 + food2;
+      
+      var total = 0;
+      for (var i = 0; i < combinedData.length; i++) {
+        total += combinedData.charCodeAt(i);
+      }
+      
+      
+      var compatibility = total % 101;
+      
+      var explanation = "";
+      if (compatibility >= 90) {
+        explanation = "Your connection is magical and destined! Your birthdays, zodiac signs, and shared tastes show that the stars have aligned for you both. Whether it's your shared love for " + food1 + " and " + food2 + " or the beautiful harmony of your favorite colors (" + color1 + " and " + color2 + "), your compatibility is off the charts.";
+      } else if (compatibility >= 70) {
+        explanation = "You have a strong connection. Your zodiac signs and personal tastes complement each other well, and your shared interests promise a harmonious relationship.";
+      } else if (compatibility >= 50) {
+        explanation = "There is potential in your relationship. While differences in your tastes and zodiac traits exist, these unique qualities can create a balanced and dynamic partnership.";
+      } else {
+        explanation = "Your relationship might face some challenges. The mix of your birthdays, zodiac signs, and personal favorites indicates a few hurdles. However, every relationship can flourish with understanding and compromise.";
+      }
+      
+      var resultHtml = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <title>Compatibility Result</title>
+        <style>
+          body {
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+          }
+          .result-container {
+            background-color: #fff;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+          }
+          h1 {
+            color: #ff6f61;
+          }
+          .detail {
+            margin: 10px 0;
+            font-size: 1.1em;
+          }
+          .score {
+            font-size: 2em;
+            margin: 20px 0;
+            color: #ff6f61;
+          }
+          p {
+            font-size: 1.1em;
+            line-height: 1.6;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="result-container">
+          <h1>Compatibility Result</h1>
+          <div class="detail"><strong>${name1}</strong> (${zodiac1}, born on ${bday1}, loves ${color1} and ${food1})</div>
+          <div class="detail"><strong>${name2}</strong> (${zodiac2}, born on ${bday2}, loves ${color2} and ${food2})</div>
+          <div class="score">${compatibility}% Compatibility</div>
+          <p>${explanation}</p>
+        </div>
+      </body>
+      </html>
+      `;
+      
+      var resultWindow = window.open("", "Compatibility Result", "width=800,height=600");
+      resultWindow.document.write(resultHtml);
+      resultWindow.document.close();
+    }
+  </script>
+</body>
+</html>
